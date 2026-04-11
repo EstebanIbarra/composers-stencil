@@ -12,9 +12,10 @@ REST_QTY = 8;
 
 module rest_double_whole(x, y, ls, t) {
   sf = smufl_scale_factor(ls, SMuFL_DOUBLE_WHOLE_REST_RATIO);
-  sf = 0.02;
   echo(str("Double whole rest scale factor: ", sf));
-  symbol(x, y, sf, t, SVG, "double_whole_rest");
+  sample_staff(x, y, ls, t);
+  centered_x = x - sample_staff_width / 5;
+  symbol(centered_x, y, sf, t, SVG, "double_whole_rest");
 }
 
 /*
@@ -34,12 +35,14 @@ module rest_half(x, y, ls, t) {
 module rest_quarter(x, y, ls, t) {
   sf = smufl_scale_factor(ls, SMuFL_QUARTER_REST_RATIO);
   echo(str("Quarter rest scale factor: ", sf));
+  sample_staff(x, y, ls, t);
   symbol(x, y, sf, t, SVG, "quarter_rest");
 }
 
 module rest_eighth(x, y, ls, t) {
   sf = smufl_scale_factor(ls, SMuFL_EIGHTH_REST_RATIO);
   echo(str("Eighth rest scale factor: ", sf));
+  sample_staff(x, y, ls, t);
   symbol(x, y, sf, t, SVG, "eighth_rest");
 }
 
@@ -51,7 +54,7 @@ module rests(ph, m, x, ls, t) {
   sym_label(x, y_label, t, "Rests");
   for (i = [1:REST_QTY]) {
     if (i == 1) {
-      // 2/1 rest
+      rest_double_whole(x, y_block * i, ls, t);
     } else if (i == 2) {
       // 1/1 rest
     } else if (i == 3) {
