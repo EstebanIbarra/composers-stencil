@@ -15,35 +15,33 @@ module rest_double_whole(x, y, ls, t) {
   echo(str("Double whole rest scale factor: ", sf));
   sample_staff(x, y, ls, t);
   centered_x = x - sample_staff_width / 5;
-  symbol(centered_x, y, sf, t, SVG, "double_whole_rest");
+  symbol(centered_x, y, sf, t, SVG, "rests/double_whole");
 }
 
-/*
 module rest_whole(x, y, ls, t) {
   sf = smufl_scale_factor(ls, SMuFL_DOUBLE_REST_RATIO);
   echo(str("Double rest scale factor: ", sf));
-  symbol(x, y, sf, t, SVG, "whole_rest");
+  symbol(x, y, sf, t, SVG, "rests/whole");
 }
 
 module rest_half(x, y, ls, t) {
   sf = smufl_scale_factor(ls, SMuFL_HALF_REST_RATIO);
   echo(str("Half rest scale factor: ", sf));
-  symbol(x, y, sf, t, SVG, "half_rest");
+  symbol(x, y, sf, t, SVG, "rests/half");
 }
-*/
 
 module rest_quarter(x, y, ls, t) {
   sf = smufl_scale_factor(ls, SMuFL_QUARTER_REST_RATIO);
   echo(str("Quarter rest scale factor: ", sf));
   sample_staff(x, y, ls, t);
-  symbol(x, y, sf, t, SVG, "quarter_rest");
+  symbol(x, y, sf, t, SVG, "rests/quarter");
 }
 
 module rest_eighth(x, y, ls, t) {
   sf = smufl_scale_factor(ls, SMuFL_EIGHTH_REST_RATIO);
   echo(str("Eighth rest scale factor: ", sf));
   sample_staff(x, y, ls, t);
-  symbol(x, y, sf, t, SVG, "eighth_rest");
+  symbol(x, y, sf, t, SVG, "rests/eighth");
 }
 
 module rests(ph, m, x, ls, t) {
