@@ -9,6 +9,7 @@ include <primitives/staves.scad>
 include <primitives/bars.scad>
 include <symbols/distribution.scad>
 include <symbols/registry.scad>
+include <symbols/rests.scad>
 
 // Symbol placement - Add new branches here when extending the symbol registry and implementing new symbol modules.
 // id        — symbol ID from registry.scad
@@ -18,16 +19,19 @@ module place_symbol(id, x) {
     bar_regular(x, stave_v_offset, total_stave_h, slot_width, thickness);
   else if (id == SYM_BAR_THICK && enable_bar_thick)
     bar_thick(x, stave_v_offset, total_stave_h, slot_width, thickness);
+  else if (id == SYM_RESTS && enable_rests)
+    rests(pg_h, margin, x, line_spacing, thickness);
   // else: unknown symbol, do nothing
 }
 
 corner_radius = margin;
 $fn = 128;
 module rounded_plate() {
-  minkowski() {
-    cube([pg_w - 2 * corner_radius, pg_h - 2 * corner_radius, thickness]);
-    cylinder(r=corner_radius, h=0.001);
-  }
+  translate([corner_radius, corner_radius, 0])
+    minkowski() {
+      cube([pg_w - 2 * corner_radius, pg_h - 2 * corner_radius, thickness]);
+      cylinder(r=corner_radius, h=0.001);
+    }
 }
 
 module stave_block() {
@@ -58,12 +62,16 @@ module rulers() {
   }
 }
 
+module test() {
+  rest_double_whole(7.7, 10, line_spacing, thickness);
+}
+
 module stencil() {
   difference() {
-    translate([corner_radius, corner_radius, 0])
-      rounded_plate();
+    rounded_plate();
     stave_block();
     symbols();
     rulers();
+    if (test_mode) test();
   }
 }

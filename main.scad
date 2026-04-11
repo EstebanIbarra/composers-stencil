@@ -34,7 +34,7 @@ line_spacing = 2.0; // [2:0.5:6]
 
 // --- Slot width (mm) ---
 // Physical width of each cut line in mm. 
-slot_width = 0.4; // [0.1:0.1:2.0]
+slot_width = 0.5; // [0.1:0.1:2.0]
 
 // --- Enable staff line guide ---
 // Enables a guide line along the top edge of the stencil to help draw the staff lines.
@@ -49,6 +49,10 @@ enable_bar_regular = true;
 // --- Enable thick bar ---
 // Enables the thick bar symbol (thick vertical line) in the symbol registry.
 enable_bar_thick = true;
+
+// --- Enable rests ---
+// Enables all rest symbols in the symbol registry (currently only quarter rest).
+enable_rests = true;
 
 /* [Engraving] */
 
@@ -74,33 +78,45 @@ enable_right_ruler = true;
 // Units for ruler markings.
 ruler_system = "Metric"; // [Metric, Imperial]
 
+/* [Hidden] */
+
+model_name = "Composer's Stencil";
+semver = "0.0.1";
+designer = "Esteban Ibarra";
+repo = "github.com/EstebanIbarra/composers-stencil";
+test_mode = true;
+
 include <lib/stencil.scad>
 
 stencil();
 
-echo(str("\n\n\n",
-"========= Composer's Stencil Generator v0.0.1 =========\n",
-  "Designer:  Esteban Ibarra\n",
-  "GitHub: github.com/EstebanIbarra/composers-stencil\n",
-  "Stencil:\n",
-    "\t- Paper format: ", format, "\n",
-    "\t- Orientation: ", orientation, "\n",
-    "\t- Margin: ", margin, " mm\n",
-    "\t- Thickness: ", thickness, " mm\n",
-  "Staves:\n",
-    "\t- Stave count: ", stave_count, "\n",
-    "\t- Line spacing: ", line_spacing, " mm\n",
-    "\t- Slot width: ", slot_width, " mm\n",
-    "\t- Staff line guide: ", enable_staff_line_guide ? "Enabled" : "Disabled", "\n",
-  "Bars & Symbols:\n",
-    "\t- Regular bar: ", enable_bar_regular ? "Enabled" : "Disabled", "\n",
-    "\t- Thick bar: ", enable_bar_thick ? "Enabled" : "Disabled", "\n",
-  "Engraving:\n",
-    "\t- Engraving depth: ", engraving_depth, " mm\n",
-    "\t- Font size: ", font_size, " mm\n",
-  "Rulers:\n",
-    "\t- Bottom ruler: ", enable_bottom_ruler ? "Enabled" : "Disabled", "\n",
-    "\t- Right ruler: ", enable_right_ruler ? "Enabled" : "Disabled", "\n",
-    "\t- Metric system: ", ruler_system,
-"\n\n\n"
-));
+echo(
+  str(
+    "\n\n",
+    "========= ", model_name, " Generator v", semver, " =========\n",
+    "   Designer:  ", designer, "\n",
+    "   GitHub: ", repo, "\n",
+    "     Stencil:\n",
+    "       - Paper format: ", format, "\n",
+    "       - Orientation: ", orientation, "\n",
+    "       - Margin: ", margin, " mm\n",
+    "       - Thickness: ", thickness, " mm\n",
+    "     Staves:\n",
+    "       - Stave count: ", stave_count, "\n",
+    "       - Line spacing: ", line_spacing, " mm\n",
+    "       - Slot width: ", slot_width, " mm\n",
+    "       - Staff line guide: ", enable_staff_line_guide ? "Enabled" : "Disabled", "\n",
+    "     Bars & Symbols:\n",
+    "       - Regular bar: ", enable_bar_regular ? "Enabled" : "Disabled", "\n",
+    "       - Thick bar: ", enable_bar_thick ? "Enabled" : "Disabled", "\n",
+    "       - Rests: ", enable_rests ? "Enabled" : "Disabled", "\n",
+    "     Engraving:\n",
+    "       - Engraving depth: ", engraving_depth, " mm\n",
+    "       - Font size: ", font_size, " mm\n",
+    "     Rulers:\n",
+    "       - Bottom ruler: ", enable_bottom_ruler ? "Enabled" : "Disabled", "\n",
+    "       - Right ruler: ", enable_right_ruler ? "Enabled" : "Disabled", "\n",
+    "       - Metric system: ", ruler_system,
+    "\n"
+  )
+);
