@@ -64,6 +64,7 @@ engraving_depth = 0.5; // [0.2:0.1:4.5]
 // Size of the engraved text on the stencil.
 font_size = 2.0; // [1.5:0.5:5
 
+
 /* [Rulers] */
 
 // --- Enable bottom ruler ---
@@ -84,7 +85,7 @@ model_name = "Composer's Stencil";
 semver = "0.0.1";
 designer = "Esteban Ibarra";
 repo = "github.com/EstebanIbarra/composers-stencil";
-test_mode = true;
+sample_staff_width = line_spacing * 5;
 
 include <lib/stencil.scad>
 
@@ -113,6 +114,7 @@ echo(
     "     Engraving:\n",
     "       - Engraving depth: ", engraving_depth, " mm\n",
     "       - Font size: ", font_size, " mm\n",
+    "       - Sample staff width: ", sample_staff_width, " mm\n",
     "     Rulers:\n",
     "       - Bottom ruler: ", enable_bottom_ruler ? "Enabled" : "Disabled", "\n",
     "       - Right ruler: ", enable_right_ruler ? "Enabled" : "Disabled", "\n",
