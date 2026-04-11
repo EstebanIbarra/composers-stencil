@@ -62,16 +62,11 @@ module rulers() {
   }
 }
 
-module test() {
-  rest_double_whole(7.7, 10, line_spacing, thickness);
-}
-
 module stencil() {
   difference() {
     rounded_plate();
     stave_block();
     symbols();
     rulers();
-    if (test_mode) test();
   }
 }
