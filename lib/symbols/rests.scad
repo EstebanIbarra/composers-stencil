@@ -19,14 +19,16 @@ module rest_double_whole(x, y, ls, t) {
 }
 
 module rest_whole(x, y, ls, t) {
-  sf = smufl_scale_factor(ls, SMuFL_DOUBLE_REST_RATIO);
+  sf = smufl_scale_factor(ls, SMuFL_WHOLE_REST_RATIO);
   echo(str("Double rest scale factor: ", sf));
+  sample_staff(x, y, ls, t);
   symbol(x, y, sf, t, SVG, "rests/whole");
 }
 
 module rest_half(x, y, ls, t) {
   sf = smufl_scale_factor(ls, SMuFL_HALF_REST_RATIO);
   echo(str("Half rest scale factor: ", sf));
+  sample_staff(x, y, ls, t);
   symbol(x, y, sf, t, SVG, "rests/half");
 }
 
@@ -44,6 +46,29 @@ module rest_eighth(x, y, ls, t) {
   symbol(x, y, sf, t, SVG, "rests/eighth");
 }
 
+module rest_sixteenth(x, y, ls, t) {
+  sf = smufl_scale_factor(ls, SMuFL_SIXTEENTH_REST_RATIO);
+  echo(str("Sixteenth rest scale factor: ", sf));
+  sample_staff(x, y, ls, t);
+  symbol(x, y + ls / 1.7, sf, t, SVG, "rests/sixteenth");
+}
+
+module rest_thirty_second(x, y, ls, t) {
+  sf = smufl_scale_factor(ls, SMuFL_THIRTY_SECOND_REST_RATIO);
+  echo(str("Thirty-second rest scale factor: ", sf));
+  sample_staff(x, y, ls, t);
+  centered_x = x - sample_staff_width / 15;
+  symbol(centered_x, y, sf, t, SVG, "rests/thirty_second");
+}
+
+module rest_sixty_fourth(x, y, ls, t) {
+  sf = smufl_scale_factor(ls, SMuFL_SIXTY_FOURTH_REST_RATIO);
+  echo(str("Sixty-fourth rest scale factor: ", sf));
+  sample_staff(x, y, ls, t);
+  centered_x = x - sample_staff_width / 15;
+  symbol(centered_x, y + ls / 2, sf, t, SVG, "rests/sixty_fourth");
+}
+
 module rests(ph, m, x, ls, t) {
   available_height = ph - 2 * m - font_size;
   y_block = available_height / REST_QTY;
@@ -51,22 +76,23 @@ module rests(ph, m, x, ls, t) {
 
   sym_label(x, y_label, t, "Rests");
   for (i = [1:REST_QTY]) {
+    y = y_block * i;
     if (i == 1) {
-      rest_double_whole(x, y_block * i, ls, t);
+      rest_double_whole(x, y, ls, t);
     } else if (i == 2) {
-      // 1/1 rest
+      rest_whole(x, y, ls, t);
     } else if (i == 3) {
-      // 1/2 rest
+      rest_half(x, y, ls, t);
     } else if (i == 4) {
-      rest_quarter(x, y_block * i, ls, t);
+      rest_quarter(x, y, ls, t);
     } else if (i == 5) {
-      rest_eighth(x, y_block * i, ls, t);
+      rest_eighth(x, y, ls, t);
     } else if (i == 6) {
-      // 1/16 rest
+      rest_sixteenth(x, y, ls, t);
     } else if (i == 7) {
-      // 1/32 rest
+      rest_thirty_second(x, y, ls, t);
     } else if (i == 8) {
-      // 1/64 rest
+      rest_sixty_fourth(x, y, ls, t);
     }
   }
 }
