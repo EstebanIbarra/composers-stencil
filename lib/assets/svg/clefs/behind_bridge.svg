@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1200">
+
+  <!-- ============================================================
+    bowed_clef.svg
+    Custom clef symbol: bowed string instrument (bridge + strings + tailpiece)
+    SMuFL-compatible: 1000 units per em, staff height = 4 * line_spacing
+    Designer: Esteban Ibarra
+    Repo: github.com/EstebanIbarra/composers-stencil
+    Note: strings II (x=-75) and IV (x=225) omitted to prevent stencil
+          flexing. Symbol is symmetric — flip horizontally to draw
+          the missing strings.
+  ============================================================ -->
+
+  <g transform="translate(500, 120)">
+
+    <!-- Bridge: unchanged -->
+    <path
+      fill="none"
+      stroke="black"
+      stroke-width="90"
+      stroke-linecap="round"
+      d="M -300,0 Q 0,-60 300,0"
+    />
+
+    <!-- Strings I (x=-225) and III (x=75) only -->
+    <line fill="none" stroke="black" stroke-width="36" stroke-linecap="round"
+      x1="-225" y1="82" x2="-225" y2="764" />
+    <line fill="none" stroke="black" stroke-width="36" stroke-linecap="round"
+      x1="75"   y1="67" x2="75"   y2="767" />
+
+    <!-- Tailpiece: unchanged -->
+    <path fill="black" stroke="none" d="
+      M -300,857
+      Q -300,817 -260,817
+      L  260,817
+      Q  300,817  300,857
+      L   90,1097
+      Q   80,1117  50,1117
+      L  -50,1117
+      Q  -80,1117 -90,1097
+      Z
+    "/>
+
+  </g>
+
+</svg>

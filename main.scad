@@ -54,6 +54,10 @@ enable_bar_thick = true;
 // Enables all rest symbols in the symbol registry (currently only quarter rest).
 enable_rests = true;
 
+// --- Enable clefs ---
+// Enables all rest symbols in the symbol registry (currently only quarter rest).
+enable_clefs = true;
+
 /* [Engraving] */
 
 // --- Engraving depth (mm) ---

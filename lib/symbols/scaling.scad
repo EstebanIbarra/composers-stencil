@@ -12,6 +12,7 @@ function smufl_scale_factor(ls, ratio) =
 //  SMuFL Symbol Ratios.
 // ============================================================
 
+// ========================== RESTS ===========================
 SMuFL_DOUBLE_WHOLE_REST_RATIO = 2.5;
 SMuFL_WHOLE_REST_RATIO = 2.5;
 SMuFL_HALF_REST_RATIO = 2.5;
@@ -20,3 +21,6 @@ SMuFL_EIGHTH_REST_RATIO = 2.8;
 SMuFL_SIXTEENTH_REST_RATIO = 2.5;
 SMuFL_THIRTY_SECOND_REST_RATIO = 2.5;
 SMuFL_SIXTY_FOURTH_REST_RATIO = 2.5;
+
+// ========================== CLEFS ==========================
+SMuFL_BEHIND_BRIDGE_CLEF_RATIO = 4.0;

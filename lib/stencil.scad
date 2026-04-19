@@ -7,6 +7,7 @@ include <engravings/ruler.scad>
 include <geometry.scad>
 include <primitives/staves.scad>
 include <primitives/bars.scad>
+include <symbols/clefs.scad>
 include <symbols/distribution.scad>
 include <symbols/registry.scad>
 include <symbols/rests.scad>
@@ -21,6 +22,8 @@ module place_symbol(id, x) {
     bar_thick(x, stave_v_offset, total_stave_h, slot_width, thickness);
   else if (id == SYM_RESTS && enable_rests)
     rests(pg_h, margin, x, line_spacing, thickness);
+  else if (id == SYM_CLEFS && enable_clefs)
+    clefs(pg_h, margin, x, line_spacing, thickness);
   // else: unknown symbol, do nothing
 }
 

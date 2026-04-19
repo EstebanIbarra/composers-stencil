@@ -70,7 +70,7 @@ module rest_sixty_fourth(x, y, ls, t) {
 }
 
 module rests(ph, m, x, ls, t) {
-  available_height = ph - 2 * m - font_size;
+  available_height = ph - 2 * m - 1.5 * font_size;
   y_block = available_height / REST_QTY;
   y_label = ph - m - font_size;
 
