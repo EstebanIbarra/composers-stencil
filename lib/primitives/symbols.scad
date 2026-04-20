@@ -1,6 +1,6 @@
 // ============================================================
 //  symbols.scad
-//  Low-level reusable 
+//  Low-level reusable symbol primitives.
 // ============================================================
 
 module symbol(x, y, sf, t, filetype, filename) {
