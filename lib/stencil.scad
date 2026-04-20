@@ -16,11 +16,7 @@ include <symbols/rests.scad>
 // id        — symbol ID from registry.scad
 // x         — X position of the left edge of the symbol
 module place_symbol(id, x) {
-  if (id == SYM_BAR_REGULAR && enable_bar_regular)
-    bar_regular(x, stave_v_offset, total_stave_h, slot_width, thickness);
-  else if (id == SYM_BAR_THICK && enable_bar_thick)
-    bar_thick(x, stave_v_offset, total_stave_h, slot_width, thickness);
-  else if (id == SYM_RESTS && enable_rests)
+  if (id == SYM_RESTS && enable_rests)
     rests(pg_h, margin, x, line_spacing, thickness);
   else if (id == SYM_CLEFS && enable_clefs)
     clefs(pg_h, margin, x, line_spacing, thickness);
@@ -37,11 +33,21 @@ module rounded_plate() {
     }
 }
 
+module bars() {
+  x_init = 1.25 * margin + (enable_left_ruler ? font_size : 0);
+  bar_h = total_stave_h + line_spacing;
+  bar_thick(x_init, stave_v_offset, bar_h, slot_width, thickness);
+  bar_regular(x_init + 1.1 * margin, stave_v_offset, bar_h, slot_width, thickness);
+}
+
 module stave_block() {
-  if (enable_staff_line_guide) staff_line_guide(pg_w, pg_h - (margin / 2), slot_width, thickness, corner_radius);
   for (i = [0:stave_count - 1]) {
     y_pos = stave_v_offset + i * (staff_height + stave_gap);
-    staff(margin, y_pos, content_w, line_spacing, slot_width, thickness);
+    staff(margins, y_pos, content_w, line_spacing, slot_width, thickness);
+    if (enable_staff_line_guide) {
+      if (i == 0) staff_line_guide_top(y_pos, content_w, slot_width, thickness);
+      if (i == stave_count - 1) staff_line_guide_bottom(y_pos, line_spacing, content_w, slot_width, thickness);
+    }
   }
 }
 
@@ -57,19 +63,28 @@ module symbols() {
 
 module rulers() {
   if (ruler_system == "Metric") {
-    if (enable_bottom_ruler) metric_ruler_bottom();
+    if (enable_top_ruler) metric_ruler_top();
     if (enable_right_ruler) metric_ruler_right();
+    if (enable_bottom_ruler) metric_ruler_bottom();
+    if (enable_left_ruler) metric_ruler_left();
   } else {
-    if (enable_bottom_ruler) imperial_ruler_bottom();
+    if (enable_top_ruler) imperial_ruler_top();
     if (enable_right_ruler) imperial_ruler_right();
+    if (enable_bottom_ruler) imperial_ruler_bottom();
+    if (enable_left_ruler) imperial_ruler_left();
   }
 }
 
 module stencil() {
   difference() {
     rounded_plate();
+    bars();
     stave_block();
     symbols();
     rulers();
+    /*
+    translate([notch_free_start, margins[2] + notch_offset, -0.1])
+      #cube([notch_free_width, notch_free_height, thickness + 0.2]);
+      */
   }
 }

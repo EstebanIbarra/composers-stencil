@@ -18,9 +18,9 @@ module notch(x, y, w, sw, t) {
 
 module staff_line(x, y, w, sw, t) {
   // Left notch
-  notch(x, y, notch_length, sw, t);
+  notch(margins[3], y, notch_length, sw, t);
   // Right notch
-  notch(x + w - notch_length, y, notch_length, sw, t);
+  notch(margins[1] + w + 1.5 * margin, y, notch_length, sw, t);
 }
 
 module staff(x, y, w, ls, sw, t) {
@@ -29,12 +29,10 @@ module staff(x, y, w, ls, sw, t) {
   }
 }
 
-module staff_line_guide(pw, ph, sw, t, cr) {
-  r = sw / 2;
-  translate([cr + r, ph - sw / 2 + r, -0.1])
-    hull() {
-      cylinder(r=r, h=t + 0.2, $fn=16);
-      translate([pw - 2 * cr - sw, 0, 0])
-        cylinder(r=r, h=t + 0.2, $fn=16);
-    }
+module staff_line_guide_top(y, w, sw, t) {
+  notch(margins[3], y, w - notch_length, sw, t);
+}
+
+module staff_line_guide_bottom(y, ls, w, sw, t) {
+  notch(margins[3], y + ls * 4, w - notch_length, sw, t);
 }

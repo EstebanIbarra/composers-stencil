@@ -4,15 +4,17 @@
 //  No geometry emitted — just computed values other files use.
 // ============================================================
 
-include <paper.scad>
+include <page.scad>
 
 _page = resolve_page(format, orientation);
 scale_factor = 0.975;
 pg_w = _page[0] * scale_factor;
 pg_h = _page[1] * scale_factor;
 
-content_w = pg_w - 2 * margin;
-content_h = pg_h - 2 * margin;
+margins = resolve_margins();
+
+content_h = pg_h - margins[0] - margins[2];
+content_w = pg_w - margins[1] - margins[3];
 
 staff_height = 4 * line_spacing;
 

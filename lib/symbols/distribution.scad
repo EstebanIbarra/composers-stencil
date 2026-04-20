@@ -5,10 +5,11 @@
 
 include <registry.scad>
 
-notch_offset = 0.5;
-notch_free_start = margin + notch_length + notch_offset;
-notch_free_end = margin + content_w - notch_length - notch_offset;
+notch_offset = 2;
+notch_free_start = margins[3] + notch_length + notch_offset;
+notch_free_end = content_w + margins[1] + 2 * notch_length + notch_offset;
 notch_free_width = notch_free_end - notch_free_start;
+notch_free_height = content_h - 2 * notch_offset;
 
 // Total width consumed by all symbols
 function total_sym_width(ids, i = 0, acc = 0) =

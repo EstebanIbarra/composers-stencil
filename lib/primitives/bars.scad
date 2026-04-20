@@ -9,7 +9,7 @@
 //  t         — stencil thickness
 // ============================================================
 
-thickness_factor = 3;
+thickness_factor = 1.5;
 
 module slot_v(x, y, h, sw, t) {
   translate([x, y, -0.1])
